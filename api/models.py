@@ -40,7 +40,7 @@ class Exercise(models.Model):
     name = models.CharField(max_length=255, )
     instructions = models.TextField()
     muscle_group = MultiSelectField(choices=MUSCLE_GROUPS, null=True)
-    equipment = models.CharField(max_length=255, default=None, null=True, blank=True)
+    equipment = models.ManyToManyField(Equipment)
     #TODO: Add exercise picture
     #image = models.ImageField(blank=True, null=True)
     video_link = models.CharField(max_length=255)
