@@ -4,6 +4,12 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 
+class Equipment(models.Model):
+    #TODO: Add equipment picture
+    #image = models.ImageField(blank=True, null=True)
+    label = models.CharField(max_length=55)
+
+
 class Exercise(models.Model):
 
     MUSCLE_GROUPS = {
@@ -34,8 +40,9 @@ class Exercise(models.Model):
     name = models.CharField(max_length=255, )
     instructions = models.TextField()
     muscle_group = MultiSelectField(choices=MUSCLE_GROUPS, null=True)
-    equipment = models.CharField(default=None, null=True, blank=True)
-    #TODO: Add picture thumbnail to exercises
+    equipment = models.CharField(max_length=255, default=None, null=True, blank=True)
+    #TODO: Add exercise picture
+    #image = models.ImageField(blank=True, null=True)
     video_link = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -57,9 +64,10 @@ class Guide(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     description = models.TextField()
-    tags = models.ManyToManyField(Tags)
     routine = models.JSONField()
-    guide_tag = models.ManyToManyField(Tags, null=True, blank=True)
+    guide_tag = models.ManyToManyField(Tags, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateField(auto_now=True)
 
 #TODO: Implement Rating
 
