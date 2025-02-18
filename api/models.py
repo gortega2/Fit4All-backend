@@ -47,6 +47,9 @@ class Exercise(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return ','.join([str(self.id), str(self.name)])
+
 
 # class Exercise_block(models.Model):
 
