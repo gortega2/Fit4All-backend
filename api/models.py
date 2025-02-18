@@ -1,7 +1,27 @@
+import json
 from django.db import models
 from multiselectfield import MultiSelectField
 from django.contrib.auth.models import User
 # Create your models here.
+
+MUSCLE_GROUPS = {
+    'ABDR': 'Abductors',
+    "ADDR": 'Adductors',
+    "ABS": "Abs",
+    "BACK": "Back",
+    "BCPS": "Biceps",
+    'CLVS': 'Calves',
+    "CHST": 'Chest',
+    'FARM': 'Forearms',
+    "GLTS": 'Glutes',
+        "HMSTR": 'Hamstrings',
+    'LBACK': 'Lower Back',
+    'NCK': 'Neck',
+    "QDCPS": 'Quadriceps',
+    "SHDR": 'Shoulders',
+    'TRPS': 'Trapezius',
+    "TRCPS": 'Triceps',
+}
 
 
 class Equipment(models.Model):
@@ -12,34 +32,9 @@ class Equipment(models.Model):
 
 class Exercise(models.Model):
 
-    MUSCLE_GROUPS = {
-        'ABDR': 'Abductors',
-        "ADDR": 'Adductors',
-        "ABS": "Abs",
-        "BACK": "Back",
-        "BCPS": "Biceps",
-        'CLVS': 'Calves',
-        "CHST": 'Chest',
-        'FARM': 'Forearms',
-        "GLTS": 'Glutes',
-         "HMSTR": 'Hamstrings',
-        'LBACK': 'Lower Back',
-        'NCK': 'Neck',
-        "QDCPS": 'Quadriceps',
-        "SHDR": 'Shoulders',
-        'TRPS': 'Trapezius',
-        "TRCPS": 'Triceps',
-        
-        
-
-    }
-
-
-
-
     name = models.CharField(max_length=255, )
     instructions = models.TextField()
-    muscle_group = MultiSelectField(choices=MUSCLE_GROUPS, null=True)
+    muscle_group = MultiSelectField(choices=MUSCLE_GROUPS, null=True, blank=True)
     equipment = models.ManyToManyField(Equipment)
     #TODO: Add exercise picture
     #image = models.ImageField(blank=True, null=True)
@@ -47,8 +42,8 @@ class Exercise(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
-        return ','.join([str(self.id), str(self.name)])
+    # def __str__(self):
+    #     return json.dumps({'id': self.id, 'name': self.name})
 
 
 # class Exercise_block(models.Model):

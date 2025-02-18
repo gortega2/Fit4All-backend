@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'api',
+    'multiselectfield',
 
 ]
 
@@ -136,5 +137,8 @@ REST_FRAMEWORK = {
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    ],
+    # 'DATETIME_FORMAT': "%s",
+    # 'DATEIME_INPUT_FORMATS': ("%s",)
 }
+
