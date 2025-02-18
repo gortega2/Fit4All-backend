@@ -18,3 +18,12 @@ class EquipmentList(generics.ListCreateAPIView):
     queryset = Equipment.objects.all()
     serializer_class = EquipmentSerializer
 
+
+class GuideList(generics.ListCreateAPIView):
+    queryset = Guide.objects.all()
+    serializer_class = GuideSerializer
+
+class ExerciseList(generics.ListCreateAPIView):
+    queryset = Exercise.objects.all()
+    serializer_class = ExerciseSerializer
+
