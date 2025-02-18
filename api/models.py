@@ -67,7 +67,7 @@ class Guide(models.Model):
     routine = models.JSONField()
     guide_tag = models.ManyToManyField(Tags, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 #TODO: Implement Rating
 
