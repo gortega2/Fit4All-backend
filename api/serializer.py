@@ -10,7 +10,7 @@ class ExerciseBlockSerializer(serializers.Serializer):
     weight = serializers.IntegerField()
 
 
-class RoutineSerialzier(serializers.Serializer):
+class RoutineSerializer(serializers.Serializer):
     routine = serializers.ListField(child=ExerciseBlockSerializer(), allow_empty=False)
 
 
