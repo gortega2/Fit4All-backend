@@ -32,7 +32,7 @@ class EquipmentSerializer(serializers.ModelSerializer):
 class TagsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tags
-        fields = ('label')
+        fields = ('label', )
 
 class GuideSerializer(serializers.ModelSerializer):
     class Meta:
