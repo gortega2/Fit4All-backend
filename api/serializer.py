@@ -35,6 +35,8 @@ class TagsSerializer(serializers.ModelSerializer):
         fields = ('label', )
 
 class GuideSerializer(serializers.ModelSerializer):
+    author = serializers.StringRelatedField()
+
     class Meta:
         model = Guide
         fields = ('id','author', 'title', 'description', 'guide_tag', 'created_at', 'updated_at', 'routine')

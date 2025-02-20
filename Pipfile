@@ -10,6 +10,7 @@ django-filter = "*"
 python-dotenv = "*"
 mysqlclient = "*"
 django-multiselectfield = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 
