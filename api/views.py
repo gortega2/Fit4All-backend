@@ -8,6 +8,7 @@ from rest_framework import status, mixins, generics
 from .models import *
 from .serializer import *
 from django.http import Http404, JsonResponse
+from django.contrib.auth.models import User
 
 
 # Generic List views
@@ -30,6 +31,9 @@ class ExerciseList(generics.ListCreateAPIView):
     queryset = Exercise.objects.all()
     serializer_class = ExerciseSerializer
 
+class Userlist(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = CustomUserSerializer
 
 # Generic Detail views
 

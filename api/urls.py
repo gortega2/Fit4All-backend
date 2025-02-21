@@ -7,5 +7,6 @@ urlpatterns = [
     path('guides/', view=views.GuideList.as_view()),
     path('guides/<int:pk>/', view=views.GuideDetail.as_view()),
     path('exercises/', view=views.ExerciseList.as_view()),
-    path('exercises/<int:pk>', view=views.ExerciseDetail.as_view())
+    path('exercises/<int:pk>', view=views.ExerciseDetail.as_view()),
+    path('authors/', view=views.Userlist.as_view()),
 ]

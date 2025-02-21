@@ -1,5 +1,11 @@
 from rest_framework import serializers, fields
 from .models import *
+from django.contrib.auth.models import User
+
+class CustomUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'email')
 
 class ExerciseSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
