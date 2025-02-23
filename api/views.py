@@ -9,6 +9,8 @@ from .models import *
 from .serializer import *
 from django.http import Http404, JsonResponse
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
+from django.views.decorators.csrf import csrf_exempt
 
 
 # Generic List views
@@ -43,6 +45,39 @@ class ExerciseDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Exercise.objects.all()
     serializer_class = ExerciseSerializer
 
+
+@csrf_exempt
+def signup_view(request):
+    data = json.loads(request.body)
+    taken = User.objects.filter(username=data['username']).exists()
+
+    if taken is True:
+        return JsonResponse({"message": "That username has already been taken"}, status=status.HTTP_400_BAD_REQUEST )
+    user = User.objects.create_user(username=data['username'], password=data['password'])
+    print(user)
+    serializer = CustomUserSerializer(user)
+    if user is not None:
+        login(request, user)
+        return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
+    else:
+        return JsonResponse({"message": "Unable to login"}, status=status.HTTP_400_BAD_REQUEST)
+
+
+@csrf_exempt
+def login_view(request):
+
+
+    print(request.body)
+    data = json.loads(request.body)
+    print(data)
+    user_object = User.objects.get(username=data['username'])
+    serializer = CustomUserSerializer(user_object)
+    user = authenticate(request, username=data['username'], password=data['password'])
+    if user is not None:
+        login(request, user)
+        return JsonResponse(serializer.data, status=status.HTTP_200_OK, safe=False)
+    else:
+        return JsonResponse({"message": "Unable to login"}, status=status.HTTP_400_BAD_REQUEST, safe=False)
 
 
 class GuideDetail(mixins.RetrieveModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):

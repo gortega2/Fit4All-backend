@@ -9,4 +9,6 @@ urlpatterns = [
     path('exercises/', view=views.ExerciseList.as_view()),
     path('exercises/<int:pk>', view=views.ExerciseDetail.as_view()),
     path('authors/', view=views.Userlist.as_view()),
+    path('log-in/', view=views.login_view),
+    path('sign-up/', view=views.signup_view),
 ]
