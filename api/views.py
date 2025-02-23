@@ -24,6 +24,8 @@ class EquipmentList(generics.ListCreateAPIView):
 
 #TODO: Implement error checking on the routine field when POSTing
 class GuideList(generics.ListCreateAPIView):
+    authentication_classes = []
+    permission_classes = []
     queryset = Guide.objects.all()
     serializer_class = GuideSerializer
 

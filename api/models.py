@@ -67,6 +67,11 @@ class Guide(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+class Comments(models.Model):
+    name = models.CharField(max_length=50)
+    commented_guide = models.ForeignKey(Guide, on_delete=models.CASCADE)
+    comment = models.CharField(max_length=255)
+
 #TODO: Implement Rating
 
 #TODO: Implement Comments
