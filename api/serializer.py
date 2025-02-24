@@ -13,7 +13,7 @@ class ExerciseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Exercise
-        fields = ('id', 'name', 'instructions', 'muscle_group', 'equipment', 'video_link')
+        fields = ('id', 'name', 'instructions', 'muscle_group', 'equipment', 'video_link', 'image_url')
 
 
 class ExerciseBlockSerializer(serializers.Serializer):
